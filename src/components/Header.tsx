@@ -2,8 +2,8 @@ import { GoChecklist } from "react-icons/go";
 
 function Header() {
   return (
-    <header className="bg-slate-800">
-      <span className="text-slate-100 text-5xl py-3 flex items-center justify-center">
+    <header className="col-span-2 bg-slate-800">
+      <span className="flex items-center justify-center py-3 text-5xl text-slate-100">
         <GoChecklist /> Todo
       </span>
     </header>
