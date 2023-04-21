@@ -1,15 +1,10 @@
-import Header from "./components/utilities/Header";
-import Footer from "./components/utilities/Footer";
-import Sidebar from "./components/utilities/Sidebar";
-import Inbox from "./components/utilities/Inbox";
+import InboxPage from "./components/Pages/InboxPage";
 
-function App() {
+
+function App(): JSX.Element {
   return (
-    <div className="grid h-screen w-screen grid-cols-[1fr_4fr] grid-rows-[80px_1fr_35px]">
-      <Header />
-      <Sidebar />
-      <Inbox />
-      <Footer />
+    <div className="App">
+      <InboxPage />
     </div>
   );
 }
