@@ -8,9 +8,7 @@ import { useState } from "react";
 import uniqid from "uniqid";
 
 const App = (): JSX.Element => {
-  const [tasks, setTasks] = useState<{}[]>([
-    { id: uniqid(), task: "learn react" },
-  ]);
+  const [tasks, setTasks] = useState<{ id: string; task: string }[]>([]);
 
   const [tabId, setTabId] = useState<string>("inbox");
 
