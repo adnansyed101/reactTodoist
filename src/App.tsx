@@ -18,11 +18,16 @@ const App = (): JSX.Element => {
     setTabId(id);
   };
 
+  const createTask = (task: string) => {
+    const taskObj = { id: uniqid(), task: task };
+    setTasks((prev) => prev.concat(taskObj));
+  };
+
   return (
     <div className="grid h-screen w-screen grid-cols-[1fr_4fr] grid-rows-[80px_1fr_35px]">
       <Header />
       <Sidebar onTabClick={toggleTabs} tabId={tabId} />
-      {tabId === "inbox" && <Inbox />}
+      {tabId === "inbox" && <Inbox createTask={createTask} tasks={tasks} />}
       {tabId === "today" && <Today />}
       {tabId === "thisWeek" && <ThisWeek />}
       <Footer />
