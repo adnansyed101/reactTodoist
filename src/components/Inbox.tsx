@@ -3,7 +3,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 
 type InboxProps = {
   createTask: (task: string) => void;
-  tasks: {}[];
+  tasks: { id: string; task: string }[];
 };
 
 const Inbox = ({ createTask, tasks }: InboxProps) => {
@@ -21,7 +21,13 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
   const onInputSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     createTask(taskInput);
+    setInputBox(false);
+    setTaskInput("");
   };
+
+  const showTaskElement = tasks.map((task) => {
+    return <div key={task.id}>{task.task}</div>;
+  });
 
   return (
     <div className="h-full w-full px-10 pt-10">
@@ -60,6 +66,7 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
           </button>
         </form>
       )}
+      <ul>{showTaskElement}</ul>
     </div>
   );
 };
