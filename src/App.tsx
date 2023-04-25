@@ -21,7 +21,7 @@ const App = (): JSX.Element => {
   return (
     <div className="grid h-screen w-screen grid-cols-[1fr_4fr] grid-rows-[80px_1fr_35px]">
       <Header />
-      <Sidebar onTabClick={toggleTabs} />
+      <Sidebar onTabClick={toggleTabs} tabId={tabId} />
       {tabId === "inbox" && <Inbox />}
       {tabId === "today" && <Today />}
       {tabId === "thisWeek" && <ThisWeek />}

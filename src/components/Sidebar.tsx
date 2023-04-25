@@ -4,19 +4,29 @@ import { MdCalendarMonth } from "react-icons/md";
 
 type SidebarProps = {
   onTabClick: (id: string) => void;
+  tabId: string;
 };
 
-const Sidebar = ({ onTabClick }: SidebarProps) => {
+const Sidebar = ({ onTabClick, tabId }: SidebarProps) => {
   return (
     <div className="h-full w-full bg-slate-100 p-10">
-      <p className="sidebar-tab" onClick={() => onTabClick("inbox")}>
+      <p
+        className={tabId === "inbox" ? "sidebar-tab-border" : "sidebar-tab"}
+        onClick={() => onTabClick("inbox")}
+      >
         <AiFillStar />
         Inbox
       </p>
-      <p className="sidebar-tab" onClick={() => onTabClick("today")}>
+      <p
+        className={tabId === "today" ? "sidebar-tab-border" : "sidebar-tab"}
+        onClick={() => onTabClick("today")}
+      >
         <IoToday /> Today
       </p>
-      <p className="sidebar-tab" onClick={() => onTabClick("thisWeek")}>
+      <p
+        className={tabId === "thisWeek" ? "sidebar-tab-border" : "sidebar-tab"}
+        onClick={() => onTabClick("thisWeek")}
+      >
         <MdCalendarMonth /> This Week
       </p>
     </div>
