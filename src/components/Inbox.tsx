@@ -11,7 +11,7 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
   const [inputBox, setInputBox] = useState(false);
   const [taskObj, setTaskObj] = useState({
     task: "",
-    date: new Date().getDate().toString(),
+    date: "",
   });
 
   const toggleInputBox = () => {
@@ -29,8 +29,9 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
 
   const onInputSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setInputBox(false);
     createTask(taskObj);
-    setTaskObj({ task: "", date: new Date().getDate().toString() });
+    setTaskObj({ task: "", date: "" });
   };
 
   const showTaskElement = tasks.map((task) => {
@@ -76,8 +77,6 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
             value={taskObj.date}
             onChange={(e) => onChange(e)}
             type="date"
-            min={new Date().getDate().toString()}
-            placeholder="mm/dd/yyyy"
             className="col-span-1 rounded-lg border border-slate-900 p-2 text-xl"
           />
           <button
