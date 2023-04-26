@@ -8,17 +8,18 @@ import { useState } from "react";
 import uniqid from "uniqid";
 
 const App = (): JSX.Element => {
-  const [tasks, setTasks] = useState<{ id: string; task: string }[]>([]);
-
+  const [tasks, setTasks] = useState<
+    { id: string; task: string; date: string }[]
+  >([{ id: uniqid(), task: "Learn React", date: '12-12-2021' }]);
   const [tabId, setTabId] = useState<string>("inbox");
 
   const toggleTabs = (id: string): void => {
     setTabId(id);
   };
 
-  const createTask = (task: string) => {
-    const taskObj = { id: uniqid(), task: task };
-    setTasks((prev) => prev.concat(taskObj));
+  const createTask = (e: { task: string; date: string }) => {
+    const task = { id: uniqid(), ...e };
+    setTasks((prev) => prev.concat(task));
   };
 
   return (

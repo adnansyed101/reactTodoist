@@ -1,32 +1,50 @@
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
+import { BsCheck2All, BsFillTrashFill } from "react-icons/bs";
 
 type InboxProps = {
-  createTask: (task: string) => void;
-  tasks: { id: string; task: string }[];
+  createTask: (e: { task: string; date: string }) => void;
+  tasks: { id: string; task: string; date: string }[];
 };
 
 const Inbox = ({ createTask, tasks }: InboxProps) => {
   const [inputBox, setInputBox] = useState(false);
-  const [taskInput, setTaskInput] = useState("");
+  const [taskObj, setTaskObj] = useState({
+    task: "",
+    date: new Date().getDate().toString(),
+  });
 
   const toggleInputBox = () => {
     setInputBox((prev) => !prev);
   };
 
-  const onInputChange = (e: React.FormEvent<HTMLInputElement>) => {
-    setTaskInput(e.currentTarget.value);
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTaskObj((prev) => {
+      return {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+    });
   };
 
-  const onInputSubmit = (e: React.SyntheticEvent) => {
+  const onInputSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    createTask(taskInput);
-    setInputBox(false);
-    setTaskInput("");
+    createTask(taskObj);
+    setTaskObj({ task: "", date: new Date().getDate().toString() });
   };
 
   const showTaskElement = tasks.map((task) => {
-    return <div key={task.id}>{task.task}</div>;
+    return (
+      <div
+        className="flex items-center space-x-2 border-b-2 border-slate-500 py-1 text-xl"
+        key={task.id}
+      >
+        <BsCheck2All />
+        <span>{task.task}</span>
+        <span>{task.date}</span>
+        <BsFillTrashFill />
+      </div>
+    );
   });
 
   return (
@@ -42,31 +60,41 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
       </button>
       {inputBox && (
         <form
-          className="grid w-2/3 grid-cols-2 gap-2 p-3"
+          className="grid w-2/4 grid-cols-4 gap-2 p-3"
           onSubmit={onInputSubmit}
         >
           <input
             type="text"
-            onChange={(e) => onInputChange(e)}
-            value={taskInput}
+            onChange={(e) => onChange(e)}
+            value={taskObj.task}
+            name="task"
             placeholder="Enter Task"
-            className="col-span-2 rounded-lg border border-slate-900 p-3 text-2xl"
+            className="col-span-3 rounded-lg border border-slate-900 p-2 text-xl"
+          />
+          <input
+            name="date"
+            value={taskObj.date}
+            onChange={(e) => onChange(e)}
+            type="date"
+            min={new Date().getDate().toString()}
+            placeholder="mm/dd/yyyy"
+            className="col-span-1 rounded-lg border border-slate-900 p-2 text-xl"
           />
           <button
             type="submit"
-            className="rounded-lg border border-green-900 bg-green-300 py-2 text-2xl font-bold text-slate-900"
+            className="col-span-2 rounded-lg border border-green-900 bg-green-300 py-1 text-2xl font-bold text-slate-900"
           >
             Add
           </button>
           <button
             type="button"
-            className="rounded-lg border border-red-900 bg-red-300 py-2 text-2xl font-bold text-slate-900"
+            className="col-span-2 rounded-lg border border-red-900 bg-red-300 py-1 text-2xl font-bold text-slate-900"
           >
             Cancel
           </button>
         </form>
       )}
-      <ul>{showTaskElement}</ul>
+      <div className="my-3 px-4">{showTaskElement}</div>
     </div>
   );
 };
