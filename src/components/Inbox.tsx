@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsCheck2All, BsFillTrashFill } from "react-icons/bs";
+import { format, parseISO } from "date-fns";
 
 type InboxProps = {
   createTask: (e: { task: string; date: string }) => void;
@@ -42,7 +43,7 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
       >
         <BsCheck2All />
         <span>{task.task}</span>
-        <span>{task.date}</span>
+        <span>{format(parseISO(task.date), "MM-dd-yyyy")}</span>
         <BsFillTrashFill />
       </div>
     );

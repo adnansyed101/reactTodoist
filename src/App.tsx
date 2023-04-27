@@ -10,7 +10,7 @@ import uniqid from "uniqid";
 const App = (): JSX.Element => {
   const [tasks, setTasks] = useState<
     { id: string; task: string; date: string }[]
-  >([{ id: uniqid(), task: "Learn React", date: '12-12-2021' }]);
+  >([{ id: uniqid(), task: "Learn React", date: "2023-12-20" }]);
   const [tabId, setTabId] = useState<string>("inbox");
 
   const toggleTabs = (id: string): void => {
