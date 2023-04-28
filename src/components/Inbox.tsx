@@ -7,10 +7,16 @@ import Task from "../@types/Task";
 type InboxProps = {
   createTask: (e: { task: string; date: string; isCompleted: boolean }) => void;
   tasks: Task;
+  removeTasks: (id: string) => void;
   toggleCompleted: (id: string) => void;
 };
 
-const Inbox = ({ createTask, tasks, toggleCompleted }: InboxProps) => {
+const Inbox = ({
+  createTask,
+  tasks,
+  toggleCompleted,
+  removeTasks,
+}: InboxProps) => {
   const [inputBox, setInputBox] = useState(false);
   const [taskObj, setTaskObj] = useState({
     task: "",
@@ -50,7 +56,7 @@ const Inbox = ({ createTask, tasks, toggleCompleted }: InboxProps) => {
         <td>{task.isCompleted ? <del>{task.task}</del> : task.task}</td>
         <td>Date: {format(parseISO(task.date), "MM-dd-yyyy")}</td>
         <td>
-          <BsFillTrashFill />
+          <BsFillTrashFill onClick={() => removeTasks(task.id)} />
         </td>
         <td>
           <AiOutlineEdit />

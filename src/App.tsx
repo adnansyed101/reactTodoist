@@ -43,6 +43,12 @@ const App = (): JSX.Element => {
     });
   };
 
+  const removeTasks = (id: string) => {
+    setTasks((prev: Task) => {
+      return prev.filter((task) => task.id !== id);
+    });
+  };
+
   return (
     <div className="grid h-screen w-screen grid-cols-[1fr_4fr] grid-rows-[80px_1fr_35px]">
       <Header />
@@ -52,6 +58,7 @@ const App = (): JSX.Element => {
           createTask={createTask}
           tasks={tasks}
           toggleCompleted={toggleIsCompleted}
+          removeTasks={removeTasks}
         />
       )}
       {tabId === "today" && <Today />}
