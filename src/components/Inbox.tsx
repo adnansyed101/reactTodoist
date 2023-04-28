@@ -37,15 +37,19 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
 
   const showTaskElement = tasks.map((task) => {
     return (
-      <div
-        className="flex items-center space-x-2 border-b-2 border-slate-500 py-1 text-xl"
+      <tr
+        className="space-x-10 border-b-2 border-slate-500 py-1 text-xl"
         key={task.id}
       >
-        <BsCheck2All />
-        <span>{task.task}</span>
-        <span>{format(parseISO(task.date), "MM-dd-yyyy")}</span>
-        <BsFillTrashFill />
-      </div>
+        <td>
+          <BsCheck2All />
+        </td>
+        <td>{task.task}</td>
+        <td>Date: {format(parseISO(task.date), "MM-dd-yyyy")}</td>
+        <td>
+          <BsFillTrashFill />
+        </td>
+      </tr>
     );
   });
 
@@ -66,6 +70,7 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
           onSubmit={onInputSubmit}
         >
           <input
+            required
             type="text"
             onChange={(e) => onChange(e)}
             value={taskObj.task}
@@ -74,6 +79,7 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
             className="col-span-3 rounded-lg border border-slate-900 p-2 text-xl"
           />
           <input
+            required
             name="date"
             value={taskObj.date}
             onChange={(e) => onChange(e)}
@@ -94,7 +100,9 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
           </button>
         </form>
       )}
-      <div className="my-3 px-4">{showTaskElement}</div>
+      <table className="my-3 table w-2/3 table-auto px-4">
+        <tbody className="table-row-group">{showTaskElement}</tbody>
+      </table>
     </div>
   );
 };
