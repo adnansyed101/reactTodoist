@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus, AiOutlineEdit } from "react-icons/ai";
 import { BsCheck2All, BsFillTrashFill } from "react-icons/bs";
 import { format, parseISO } from "date-fns";
 import Task from "../@types/Task";
@@ -51,6 +51,9 @@ const Inbox = ({ createTask, tasks, toggleCompleted }: InboxProps) => {
         <td>Date: {format(parseISO(task.date), "MM-dd-yyyy")}</td>
         <td>
           <BsFillTrashFill />
+        </td>
+        <td>
+          <AiOutlineEdit />
         </td>
       </tr>
     );
