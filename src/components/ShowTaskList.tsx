@@ -22,12 +22,18 @@ const ShowTaskList = ({
     setShowEdit((prev) => !prev);
   };
 
-  const content = showEdit ? (
+  const showTask = showEdit ? (
     <td>
-      <TaskEdit task={task}/>
+      <TaskEdit task={task} />
     </td>
   ) : (
     <td>{task.isCompleted ? <del>{task.task}</del> : task.task}</td>
+  );
+
+  const showDate = showEdit ? (
+    <td></td>
+  ) : (
+    <td>Date: {format(parseISO(task.date), "MM-dd-yyyy")}</td>
   );
 
   return (
@@ -38,8 +44,8 @@ const ShowTaskList = ({
       <td onClick={() => toggleCompleted(task.id)}>
         <BsCheck2All />
       </td>
-      {content}
-      <td>Date: {format(parseISO(task.date), "MM-dd-yyyy")}</td>
+      {showTask}
+      {showDate}
       <td>
         <BsFillTrashFill onClick={() => removeTask(task.id)} />
       </td>
