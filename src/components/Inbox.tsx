@@ -84,6 +84,7 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
             value={taskObj.date}
             onChange={(e) => onChange(e)}
             type="date"
+            min={new Date().toISOString().split("T")[0]}
             className="col-span-1 rounded-lg border border-slate-900 p-2 text-xl"
           />
           <button
