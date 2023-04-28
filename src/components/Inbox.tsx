@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { AiOutlinePlus, AiOutlineEdit } from "react-icons/ai";
-import { BsCheck2All, BsFillTrashFill } from "react-icons/bs";
-import { format, parseISO } from "date-fns";
-import Task from "../@types/Task";
+import { AiOutlinePlus } from "react-icons/ai";
+import Task from "../@types/TaskList";
+import ShowTaskList from "./ShowTaskList";
 
 type InboxProps = {
   createTask: (e: { task: string; date: string; isCompleted: boolean }) => void;
@@ -46,22 +45,12 @@ const Inbox = ({
 
   const showTaskElement = tasks.map((task) => {
     return (
-      <tr
-        className="space-x-10 border-b-2 border-slate-500 py-1 text-xl"
+      <ShowTaskList
         key={task.id}
-      >
-        <td onClick={() => toggleCompleted(task.id)}>
-          <BsCheck2All />
-        </td>
-        <td>{task.isCompleted ? <del>{task.task}</del> : task.task}</td>
-        <td>Date: {format(parseISO(task.date), "MM-dd-yyyy")}</td>
-        <td>
-          <BsFillTrashFill onClick={() => removeTasks(task.id)} />
-        </td>
-        <td>
-          <AiOutlineEdit />
-        </td>
-      </tr>
+        task={task}
+        toggleCompleted={toggleCompleted}
+        removeTask={removeTasks}
+      />
     );
   });
 
