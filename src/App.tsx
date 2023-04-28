@@ -6,10 +6,10 @@ import Today from "./components/Today";
 import ThisWeek from "./components/ThisWeek";
 import { useState } from "react";
 import uniqid from "uniqid";
-import Task from "./@types/Task";
+import TaskList from "./@types/TaskList";
 
 const App = (): JSX.Element => {
-  const [tasks, setTasks] = useState<Task>([
+  const [tasks, setTasks] = useState<TaskList>([
     {
       id: uniqid(),
       task: "Learn React",
@@ -33,7 +33,7 @@ const App = (): JSX.Element => {
   };
 
   const toggleIsCompleted = (id: string) => {
-    setTasks((prev: Task) => {
+    setTasks((prev: TaskList) => {
       return prev.map((task) => {
         if (task.id === id) {
           return { ...task, isCompleted: !task.isCompleted };
@@ -44,7 +44,7 @@ const App = (): JSX.Element => {
   };
 
   const removeTasks = (id: string) => {
-    setTasks((prev: Task) => {
+    setTasks((prev: TaskList) => {
       return prev.filter((task) => task.id !== id);
     });
   };
