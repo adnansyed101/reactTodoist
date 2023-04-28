@@ -7,7 +7,7 @@ type TaskEditProp = {
 };
 
 const TaskEdit = ({ task }: TaskEditProp) => {
-  const [editedTask, setEditedTask] = useState<string>("");
+  const [editedTask, setEditedTask] = useState<string>(task.task);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditedTask(e.target.value);
@@ -19,19 +19,14 @@ const TaskEdit = ({ task }: TaskEditProp) => {
         type="text"
         value={editedTask}
         placeholder="Edit Task"
-        className="rounded-lg border border-slate-900 p-2 text-xl"
+        className="input-box"
         onChange={(e) => handleChange(e)}
       />
-      <button
-        type="submit"
-        className="mx-3 rounded-lg border border-green-900 bg-green-300 p-2 text-lg text-slate-900"
-      >
+      <input type="date" className="input-box mx-3" />
+      <button type="submit" className="green-button mx-3 px-4 py-1 text-lg">
         Add
       </button>
-      <button
-        type="button"
-        className="rounded-lg border border-red-900 bg-red-300 p-2 text-lg text-slate-900"
-      >
+      <button type="button" className="red-button px-4 py-1 text-lg">
         Cancel
       </button>
     </form>

@@ -77,7 +77,7 @@ const Inbox = ({
             value={taskObj.task}
             name="task"
             placeholder="Enter Task"
-            className="col-span-3 rounded-lg border border-slate-900 p-2 text-xl"
+            className="input-box col-span-3"
           />
           <input
             required
@@ -86,23 +86,23 @@ const Inbox = ({
             onChange={(e) => onChange(e)}
             type="date"
             min={new Date().toISOString().split("T")[0]}
-            className="col-span-1 rounded-lg border border-slate-900 p-2 text-xl"
+            className="input-box col-span-1"
           />
           <button
             type="submit"
-            className="col-span-2 rounded-lg border border-green-900 bg-green-300 py-1 text-2xl font-bold text-slate-900"
+            className="green-button col-span-2 py-1 text-2xl font-bold"
           >
             Add
           </button>
           <button
             type="button"
-            className="col-span-2 rounded-lg border border-red-900 bg-red-300 py-1 text-2xl font-bold text-slate-900"
+            className="red-button  col-span-2 py-1 text-2xl font-bold"
           >
             Cancel
           </button>
         </form>
       )}
-      <table className="my-3 table w-2/3 table-auto px-4">
+      <table className="my-3 table w-3/4 table-auto px-4">
         <tbody className="table-row-group">{showTaskElement}</tbody>
       </table>
     </div>
