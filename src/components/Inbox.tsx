@@ -2,17 +2,20 @@ import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import { BsCheck2All, BsFillTrashFill } from "react-icons/bs";
 import { format, parseISO } from "date-fns";
+import Task from "../@types/Task";
 
 type InboxProps = {
-  createTask: (e: { task: string; date: string }) => void;
-  tasks: { id: string; task: string; date: string }[];
+  createTask: (e: { task: string; date: string; isCompleted: boolean }) => void;
+  tasks: Task;
+  toggleCompleted: (id: string) => void;
 };
 
-const Inbox = ({ createTask, tasks }: InboxProps) => {
+const Inbox = ({ createTask, tasks, toggleCompleted }: InboxProps) => {
   const [inputBox, setInputBox] = useState(false);
   const [taskObj, setTaskObj] = useState({
     task: "",
     date: "",
+    isCompleted: false,
   });
 
   const toggleInputBox = () => {
@@ -32,7 +35,7 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
     e.preventDefault();
     setInputBox(false);
     createTask(taskObj);
-    setTaskObj({ task: "", date: "" });
+    setTaskObj({ task: "", date: "", isCompleted: false });
   };
 
   const showTaskElement = tasks.map((task) => {
@@ -41,10 +44,10 @@ const Inbox = ({ createTask, tasks }: InboxProps) => {
         className="space-x-10 border-b-2 border-slate-500 py-1 text-xl"
         key={task.id}
       >
-        <td>
+        <td onClick={() => toggleCompleted(task.id)}>
           <BsCheck2All />
         </td>
-        <td>{task.task}</td>
+        <td>{task.isCompleted ? <del>{task.task}</del> : task.task}</td>
         <td>Date: {format(parseISO(task.date), "MM-dd-yyyy")}</td>
         <td>
           <BsFillTrashFill />
