@@ -43,6 +43,11 @@ const Inbox = ({
     setTaskObj({ task: "", date: "", isCompleted: false });
   };
 
+  const cancelSubmit = () => {
+    setInputBox(false);
+    setTaskObj({ task: "", date: "", isCompleted: false });
+  };
+
   const showTaskElement = tasks.map((task) => {
     return (
       <ShowTaskList
@@ -97,6 +102,7 @@ const Inbox = ({
           <button
             type="button"
             className="red-button  col-span-2 py-1 text-2xl font-bold"
+            onClick={cancelSubmit}
           >
             Cancel
           </button>
