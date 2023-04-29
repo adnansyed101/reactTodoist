@@ -9,15 +9,8 @@ import uniqid from "uniqid";
 import TaskList from "./@types/TaskList";
 
 const App = (): JSX.Element => {
-  const [tasks, setTasks] = useState<TaskList>([
-    {
-      id: uniqid(),
-      task: "Learn React",
-      date: "2023-04-30",
-      isCompleted: true,
-    },
-  ]);
-  const [tabId, setTabId] = useState<string>("today");
+  const [tasks, setTasks] = useState<TaskList>([]);
+  const [tabId, setTabId] = useState<string>("inbox");
 
   const toggleTabs = (id: string): void => {
     setTabId(id);
@@ -81,7 +74,14 @@ const App = (): JSX.Element => {
           editTask={editTask}
         />
       )}
-      {tabId === "thisWeek" && <ThisWeek />}
+      {tabId === "thisWeek" && (
+        <ThisWeek
+          tasks={tasks}
+          toggleCompleted={toggleIsCompleted}
+          removeTasks={removeTasks}
+          editTask={editTask}
+        />
+      )}
       <Footer />
     </div>
   );
