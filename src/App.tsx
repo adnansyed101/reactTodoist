@@ -4,13 +4,19 @@ import Inbox from "./components/Inbox";
 import Sidebar from "./components/Sidebar";
 import Today from "./components/Today";
 import ThisWeek from "./components/ThisWeek";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import uniqid from "uniqid";
 import TaskList from "./@types/TaskList";
 
 const App = (): JSX.Element => {
-  const [tasks, setTasks] = useState<TaskList>([]);
+  const [tasks, setTasks] = useState<TaskList>(
+    () => JSON.parse(localStorage.getItem("tasks") || "") || []
+  );
   const [tabId, setTabId] = useState<string>("inbox");
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
 
   const toggleTabs = (id: string): void => {
     setTabId(id);
