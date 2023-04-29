@@ -17,7 +17,7 @@ const App = (): JSX.Element => {
       isCompleted: true,
     },
   ]);
-  const [tabId, setTabId] = useState<string>("inbox");
+  const [tabId, setTabId] = useState<string>("today");
 
   const toggleTabs = (id: string): void => {
     setTabId(id);
@@ -73,7 +73,14 @@ const App = (): JSX.Element => {
           editTask={editTask}
         />
       )}
-      {tabId === "today" && <Today />}
+      {tabId === "today" && (
+        <Today
+          tasks={tasks}
+          toggleCompleted={toggleIsCompleted}
+          removeTasks={removeTasks}
+          editTask={editTask}
+        />
+      )}
       {tabId === "thisWeek" && <ThisWeek />}
       <Footer />
     </div>
