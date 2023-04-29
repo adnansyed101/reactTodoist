@@ -13,6 +13,7 @@ const App = (): JSX.Element => {
     () => JSON.parse(localStorage.getItem("tasks") || "") || []
   );
   const [tabId, setTabId] = useState<string>("inbox");
+  const [showNav, setShowNav] = useState<boolean>(true);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -30,6 +31,8 @@ const App = (): JSX.Element => {
     const task = { id: uniqid(), ...e };
     setTasks((prev: TaskList) => [task, ...prev]);
   };
+
+  const toggleNavBar = () => setShowNav((prev) => !prev);
 
   const toggleIsCompleted = (id: string) => {
     setTasks((prev: TaskList) => {
@@ -60,9 +63,14 @@ const App = (): JSX.Element => {
   };
 
   return (
-    <div className="grid h-screen w-screen grid-cols-[1fr_4fr] grid-rows-[80px_1fr_35px]">
-      <Header />
-      <Sidebar onTabClick={toggleTabs} tabId={tabId} />
+    <div className="h-screen w-screen md:grid md:grid-cols-[1fr_4fr] md:grid-rows-[80px_1fr_35px] relative md:static">
+      <Header handleToggleNavBar={toggleNavBar} showNav={showNav} />
+      <Sidebar
+        onTabClick={toggleTabs}
+        tabId={tabId}
+        showNav={showNav}
+        handleToggleNavBar={toggleNavBar}
+      />
       {tabId === "inbox" && (
         <Inbox
           createTask={createTask}

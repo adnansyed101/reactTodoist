@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .sidebar-tab {
-  @apply my-1 flex items-center gap-2 rounded-lg py-1 pl-5 text-3xl font-bold text-slate-900 hover:scale-105 hover:bg-slate-200;
+  @apply my-1 flex items-center gap-2 rounded-lg py-1 pl-5 text-xl font-bold text-slate-900 hover:scale-105 hover:bg-slate-200 md:text-3xl;
 }
 
 .sidebar-tab-border {
-  @apply my-1 flex items-center gap-2 rounded-lg border-l-4 border-slate-900 py-1 pl-5 text-3xl font-bold text-slate-900 hover:scale-105 hover:bg-slate-200;
+  @apply my-1 flex items-center gap-2 rounded-lg border-l-4 border-slate-900 py-1 pl-5 text-xl font-bold text-slate-900 hover:scale-105 hover:bg-slate-200 md:text-3xl;
 }
 
 .input-box {
