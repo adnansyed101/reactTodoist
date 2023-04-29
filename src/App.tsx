@@ -10,7 +10,7 @@ import TaskList from "./@types/TaskList";
 
 const App = (): JSX.Element => {
   const [tasks, setTasks] = useState<TaskList>(
-    () => JSON.parse(localStorage.getItem("tasks") || "") || []
+    () => JSON.parse(localStorage.getItem("tasks")!) || []
   );
   const [tabId, setTabId] = useState<string>("inbox");
   const [showNav, setShowNav] = useState<boolean>(true);
@@ -63,7 +63,7 @@ const App = (): JSX.Element => {
   };
 
   return (
-    <div className="h-screen w-screen md:grid md:grid-cols-[1fr_4fr] md:grid-rows-[80px_1fr_35px] relative md:static">
+    <div className="relative h-screen w-screen md:static md:grid md:grid-cols-[1fr_4fr] md:grid-rows-[80px_1fr_35px]">
       <Header handleToggleNavBar={toggleNavBar} showNav={showNav} />
       <Sidebar
         onTabClick={toggleTabs}
