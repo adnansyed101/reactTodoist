@@ -29,7 +29,7 @@ const App = (): JSX.Element => {
     isCompleted: boolean;
   }) => {
     const task = { id: uniqid(), ...e };
-    setTasks((prev) => prev.concat(task));
+    setTasks((prev: TaskList) => [task, ...prev]);
   };
 
   const toggleIsCompleted = (id: string) => {
