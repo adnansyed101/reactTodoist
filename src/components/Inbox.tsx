@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import Task from "../@types/TaskList";
+import EditTask from "../@types/EditTask";
 import ShowTaskList from "./ShowTaskList";
 
 type InboxProps = {
@@ -8,6 +9,7 @@ type InboxProps = {
   tasks: Task;
   removeTasks: (id: string) => void;
   toggleCompleted: (id: string) => void;
+  editTask: EditTask;
 };
 
 const Inbox = ({
@@ -15,6 +17,7 @@ const Inbox = ({
   tasks,
   toggleCompleted,
   removeTasks,
+  editTask,
 }: InboxProps) => {
   const [inputBox, setInputBox] = useState(false);
   const [taskObj, setTaskObj] = useState({
@@ -55,6 +58,7 @@ const Inbox = ({
         task={task}
         toggleCompleted={toggleCompleted}
         removeTask={removeTasks}
+        editTask={editTask}
       />
     );
   });

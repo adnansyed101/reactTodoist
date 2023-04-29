@@ -13,7 +13,7 @@ const App = (): JSX.Element => {
     {
       id: uniqid(),
       task: "Learn React",
-      date: "2023-12-20",
+      date: "2023-04-30",
       isCompleted: true,
     },
   ]);
@@ -49,6 +49,17 @@ const App = (): JSX.Element => {
     });
   };
 
+  const editTask = (id: string, editedTask: string, date: string) => {
+    setTasks((prev: TaskList) => {
+      return prev.map((task) => {
+        if (task.id === id) {
+          return { ...task, task: editedTask, date };
+        }
+        return task;
+      });
+    });
+  };
+
   return (
     <div className="grid h-screen w-screen grid-cols-[1fr_4fr] grid-rows-[80px_1fr_35px]">
       <Header />
@@ -59,6 +70,7 @@ const App = (): JSX.Element => {
           tasks={tasks}
           toggleCompleted={toggleIsCompleted}
           removeTasks={removeTasks}
+          editTask={editTask}
         />
       )}
       {tabId === "today" && <Today />}
