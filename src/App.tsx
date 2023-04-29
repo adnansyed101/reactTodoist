@@ -5,8 +5,8 @@ import Sidebar from "./components/Sidebar";
 import Today from "./components/Today";
 import ThisWeek from "./components/ThisWeek";
 import { useState, useEffect } from "react";
-import uniqid from "uniqid";
 import TaskList from "./@types/TaskList";
+import { v4 as uuidv4 } from 'uuid';
 
 const App = (): JSX.Element => {
   const [tasks, setTasks] = useState<TaskList>(
@@ -28,7 +28,7 @@ const App = (): JSX.Element => {
     date: string;
     isCompleted: boolean;
   }) => {
-    const task = { id: uniqid(), ...e };
+    const task = { id: uuidv4(), ...e };
     setTasks((prev: TaskList) => [task, ...prev]);
   };
 
