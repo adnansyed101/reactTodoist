@@ -24,10 +24,6 @@ const Sidebar = ({
     handleToggleNavBar();
   };
 
-  const projectSideBarElement = projects.map((project: Project) => {
-    return <ProjectSideBar tabId={tabId} project={project} handleClick={handleClick}/>;
-  });
-
   return (
     <div
       className={`${
@@ -53,7 +49,11 @@ const Sidebar = ({
       >
         <MdCalendarMonth /> This Week
       </p>
-      {projectSideBarElement}
+      <ProjectSideBar
+        tabId={tabId}
+        projects={projects}
+        handleClick={handleClick}
+      />
     </div>
   );
 };
