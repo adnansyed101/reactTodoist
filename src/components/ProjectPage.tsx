@@ -3,22 +3,30 @@ import Task from "../@types/Task";
 import EditTask from "../@types/EditTask";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useState } from "react";
+import ShowTaskList from "./ShowTaskList";
 
 type ProjectPageProps = {
   project: Project;
+  tasks: Task[];
+  removeTasks: (id: string) => void;
+  toggleCompleted: (id: string) => void;
+  editTask: EditTask;
   createTask: (e: {
     task: string;
     date: string;
     isCompleted: boolean;
     projectId: string;
   }) => void;
-  tasks: Task[];
-  removeTasks: (id: string) => void;
-  toggleCompleted: (id: string) => void;
-  editTask: EditTask;
 };
 
-const ProjectPage = ({ project, createTask }: ProjectPageProps) => {
+const ProjectPage = ({
+  project,
+  tasks,
+  createTask,
+  toggleCompleted,
+  removeTasks,
+  editTask,
+}: ProjectPageProps) => {
   const [inputBox, setInputBox] = useState(false);
   const [taskObj, setTaskObj] = useState({
     task: "",
@@ -56,6 +64,20 @@ const ProjectPage = ({ project, createTask }: ProjectPageProps) => {
     setInputBox(false);
     setTaskObj({ task: "", date: "", isCompleted: false, projectId: "" });
   };
+
+  const showTaskElement = tasks
+    .filter((task: Task) => task.projectId !== project.title)
+    .map((task) => {
+      return (
+        <ShowTaskList
+          key={task.id}
+          task={task}
+          toggleCompleted={toggleCompleted}
+          removeTask={removeTasks}
+          editTask={editTask}
+        />
+      );
+    });
 
   return (
     <div className="h-full w-full p-2 md:p-10">
@@ -106,6 +128,9 @@ const ProjectPage = ({ project, createTask }: ProjectPageProps) => {
           </button>
         </form>
       )}
+      <table className="my-3 w-full table-auto px-4 lg:w-3/4">
+        <tbody>{showTaskElement}</tbody>
+      </table>
     </div>
   );
 };
