@@ -29,7 +29,7 @@ const Inbox = ({
     task: "",
     date: "",
     isCompleted: false,
-    projectId: "inbox",
+    projectId: "Inbox",
   });
 
   const toggleInputBox = () => {
