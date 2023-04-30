@@ -32,7 +32,7 @@ const ProjectPage = ({
     task: "",
     date: "",
     isCompleted: false,
-    projectId: "inbox",
+    projectId: project.title,
   });
 
   const toggleInputBox = () => {
@@ -47,7 +47,7 @@ const ProjectPage = ({
       task: "",
       date: "",
       isCompleted: false,
-      projectId: project.title,
+      projectId: "",
     });
   };
 
@@ -66,7 +66,7 @@ const ProjectPage = ({
   };
 
   const showTaskElement = tasks
-    .filter((task: Task) => task.projectId !== project.title)
+    .filter((task: Task) => task.projectId === project.title)
     .map((task) => {
       return (
         <ShowTaskList
