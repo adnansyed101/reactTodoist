@@ -15,14 +15,15 @@ const App = (): JSX.Element => {
     () => JSON.parse(localStorage.getItem("tasks")!) || []
   );
   const [tabId, setTabId] = useState<string>("inbox");
-  const [projects, setProjects] = useState<Project[]>([
-    { id: uuidv4(), title: "Homework" },
-  ]);
+  const [projects, setProjects] = useState<Project[]>(
+    () => JSON.parse(localStorage.getItem("projects")!) || []
+  );
   const [showNav, setShowNav] = useState<boolean>(true);
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-  }, [tasks]);
+    localStorage.setItem("tasks", JSON.stringify(projects));
+  }, [tasks, projects]);
 
   const toggleTabs = (id: string): void => {
     setTabId(id);
@@ -75,18 +76,17 @@ const App = (): JSX.Element => {
 
   const showProjectPage = projects.map((project: Project) => {
     return (
-      <div key={project.id}>
-        {tabId === project.title && (
-          <ProjectPage
-            project={project}
-            createTask={createTask}
-            tasks={tasks}
-            toggleCompleted={toggleIsCompleted}
-            removeTasks={removeTasks}
-            editTask={editTask}
-          />
-        )}
-      </div>
+      tabId === project.title && (
+        <ProjectPage
+          key={project.id}
+          project={project}
+          createTask={createTask}
+          tasks={tasks}
+          toggleCompleted={toggleIsCompleted}
+          removeTasks={removeTasks}
+          editTask={editTask}
+        />
+      )
     );
   });
 
