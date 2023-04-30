@@ -4,6 +4,7 @@ import Inbox from "./components/Inbox";
 import Sidebar from "./components/Sidebar";
 import Today from "./components/Today";
 import ThisWeek from "./components/ThisWeek";
+import ProjectPage from "./components/ProjectPage";
 import { useState, useEffect } from "react";
 import Task from "./@types/Task";
 import Project from "./@types/Project";
@@ -72,6 +73,23 @@ const App = (): JSX.Element => {
     });
   };
 
+  const showProjectPage = projects.map((project: Project) => {
+    return (
+      <div key={project.id}>
+        {tabId === project.title && (
+          <ProjectPage
+            project={project}
+            createTask={createTask}
+            tasks={tasks}
+            toggleCompleted={toggleIsCompleted}
+            removeTasks={removeTasks}
+            editTask={editTask}
+          />
+        )}
+      </div>
+    );
+  });
+
   return (
     <div className="relative h-screen w-screen md:static md:grid md:grid-cols-[1fr_4fr] md:grid-rows-[80px_1fr_35px]">
       <Header handleToggleNavBar={toggleNavBar} showNav={showNav} />
@@ -108,6 +126,7 @@ const App = (): JSX.Element => {
           editTask={editTask}
         />
       )}
+      {showProjectPage}
       <Footer />
     </div>
   );
