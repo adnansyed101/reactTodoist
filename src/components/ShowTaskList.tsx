@@ -39,7 +39,13 @@ const ShowTaskList = ({
       <TaskEdit task={task} onSubmit={handleSubmit} onCancel={handleCancel} />
     </td>
   ) : (
-    <td>{task.isCompleted ? <del>{task.task}</del> : task.task}</td>
+    <td>
+      {task.isCompleted ? (
+        <del>{task.task + ` (${task.projectId})`}</del>
+      ) : (
+        task.task + ` (${task.projectId})`
+      )}
+    </td>
   );
 
   const showDate = showEdit ? (
@@ -49,10 +55,7 @@ const ShowTaskList = ({
   );
 
   return (
-    <tr
-      className="border-b-2 border-slate-500 md:text-xl"
-      key={task.id}
-    >
+    <tr className="border-b-2 border-slate-500 md:text-xl" key={task.id}>
       <td onClick={() => toggleCompleted(task.id)}>
         <BsCheck2All />
       </td>
