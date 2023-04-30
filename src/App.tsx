@@ -37,6 +37,11 @@ const App = (): JSX.Element => {
     setTasks((prev: Task[]) => [task, ...prev]);
   };
 
+  const createProject = (title: string) => {
+    const projObj = { id: uuidv4(), title };
+    setProjects((prev: Project[]) => [...prev, projObj]);
+  };
+
   const toggleNavBar = () => setShowNav((prev) => !prev);
 
   const toggleIsCompleted = (id: string) => {
@@ -76,6 +81,7 @@ const App = (): JSX.Element => {
         showNav={showNav}
         handleToggleNavBar={toggleNavBar}
         projects={projects}
+        createProject={createProject}
       />
       {tabId === "inbox" && (
         <Inbox

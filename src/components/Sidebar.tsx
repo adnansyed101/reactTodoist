@@ -10,6 +10,7 @@ type SidebarProps = {
   projects: Project[];
   onTabClick: (id: string) => void;
   handleToggleNavBar: () => void;
+  createProject: (title: string) => void;
 };
 
 const Sidebar = ({
@@ -18,6 +19,7 @@ const Sidebar = ({
   projects,
   onTabClick,
   handleToggleNavBar,
+  createProject
 }: SidebarProps) => {
   const handleClick = (tab: string) => {
     onTabClick(tab);
@@ -53,6 +55,7 @@ const Sidebar = ({
         tabId={tabId}
         projects={projects}
         handleClick={handleClick}
+        createProjects={createProject}
       />
     </div>
   );
