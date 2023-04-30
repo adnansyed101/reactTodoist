@@ -31,10 +31,10 @@ const ThisWeek = ({
     }
   });
   return (
-    <div className="h-full w-full pl-10 pt-10">
+    <div className="h-full w-full p-2 md:p-10">
       <h1 className="text-5xl font-bold text-slate-900">This Week</h1>
-      <table className="my-3 table w-3/4 table-auto px-4">
-        <tbody className="table-row-group">{showTaskElement}</tbody>
+      <table className="my-3 w-full table-auto px-4 lg:w-3/4">
+        <tbody>{showTaskElement}</tbody>
       </table>
     </div>
   );

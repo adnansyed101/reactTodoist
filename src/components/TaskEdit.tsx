@@ -26,24 +26,24 @@ const TaskEdit = ({ task, onSubmit, onCancel }: TaskEditProp) => {
   };
 
   return (
-    <form className="my-1" onSubmit={handleSubmit}>
+    <form className="grid grid-cols-2 gap-1 lg:block my-1" onSubmit={handleSubmit}>
       <input
         type="text"
         value={editedTask.task}
         placeholder="Edit Task"
-        className="input-box"
+        className="input-box col-span-2"
         name="task"
         onChange={(e) => handleChange(e)}
       />
       <input
         name="date"
         type="date"
-        className="input-box mx-3"
+        className="input-box lg:mx-3 col-span-2"
         value={editedTask.date}
         onChange={(e) => handleChange(e)}
         min={new Date().toISOString().split("T")[0]}
       />
-      <button type="submit" className="green-button mx-3 px-4 py-1 text-lg">
+      <button type="submit" className="green-button px-4 py-1 text-lg lg:mx-3">
         Add
       </button>
       <button

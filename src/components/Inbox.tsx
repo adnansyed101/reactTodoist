@@ -64,19 +64,19 @@ const Inbox = ({
   });
 
   return (
-    <div className="h-full w-full px-10 pt-10">
+    <div className="h-full w-full p-2 md:p-10">
       <h1 className="text-5xl font-bold text-slate-900">Inbox</h1>
       <button
         type="button"
         onClick={toggleInputBox}
-        className="mt-4 flex items-center justify-center gap-2 rounded-md bg-slate-900 px-6 py-3 text-slate-100 hover:bg-slate-950 hover:text-slate-50"
+        className="mt-4 flex items-center justify-center gap-2 rounded-md bg-slate-900 px-3 py-2 text-slate-100 hover:bg-slate-950 hover:text-slate-50 md:px-6 md:py-3"
       >
         Add Task
         <AiOutlinePlus />
       </button>
       {inputBox && (
         <form
-          className="grid w-2/4 grid-cols-4 gap-2 p-3"
+          className="grid w-full gap-2 p-3 md:w-2/4 md:grid-cols-4"
           onSubmit={onInputSubmit}
         >
           <input
@@ -86,7 +86,7 @@ const Inbox = ({
             value={taskObj.task}
             name="task"
             placeholder="Enter Task"
-            className="input-box col-span-3"
+            className="input-box md:col-span-3"
           />
           <input
             required
@@ -95,25 +95,25 @@ const Inbox = ({
             onChange={(e) => onChange(e)}
             type="date"
             min={new Date().toISOString().split("T")[0]}
-            className="input-box col-span-1"
+            className="input-box md:col-span-1"
           />
           <button
             type="submit"
-            className="green-button col-span-2 py-1 text-2xl font-bold"
+            className="green-button py-1 text-xl font-bold md:col-span-2 md:text-2xl"
           >
             Add
           </button>
           <button
             type="button"
-            className="red-button  col-span-2 py-1 text-2xl font-bold"
+            className="red-button  py-1 text-xl font-bold md:col-span-2 md:text-2xl"
             onClick={cancelSubmit}
           >
             Cancel
           </button>
         </form>
       )}
-      <table className="my-3 table w-3/4 table-auto px-4">
-        <tbody className="table-row-group">{showTaskElement}</tbody>
+      <table className="my-3 w-full table-auto px-4 lg:w-3/4">
+        <tbody>{showTaskElement}</tbody>
       </table>
     </div>
   );

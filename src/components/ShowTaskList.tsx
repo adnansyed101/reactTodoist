@@ -45,12 +45,12 @@ const ShowTaskList = ({
   const showDate = showEdit ? (
     <td></td>
   ) : (
-    <td>Date: {format(parseISO(task.date), "MM-dd-yyyy")}</td>
+    <td>{format(parseISO(task.date), "MM-dd-yyyy")}</td>
   );
 
   return (
     <tr
-      className="space-x-10 border-b-2 border-slate-500 py-1 text-xl"
+      className="border-b-2 border-slate-500 md:text-xl"
       key={task.id}
     >
       <td onClick={() => toggleCompleted(task.id)}>
