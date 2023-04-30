@@ -1,10 +1,10 @@
-import TaskList from "../@types/TaskList";
+import Task from "../@types/Task";
 import EditTask from "../@types/EditTask";
 import ShowTaskList from "./ShowTaskList";
 import { isToday, parseISO } from "date-fns";
 
 type TodayProps = {
-  tasks: TaskList;
+  tasks: Task[];
   removeTasks: (id: string) => void;
   toggleCompleted: (id: string) => void;
   editTask: EditTask;

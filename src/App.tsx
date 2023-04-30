@@ -5,11 +5,11 @@ import Sidebar from "./components/Sidebar";
 import Today from "./components/Today";
 import ThisWeek from "./components/ThisWeek";
 import { useState, useEffect } from "react";
-import TaskList from "./@types/TaskList";
-import { v4 as uuidv4 } from 'uuid';
+import Task from "./@types/Task";
+import { v4 as uuidv4 } from "uuid";
 
 const App = (): JSX.Element => {
-  const [tasks, setTasks] = useState<TaskList>(
+  const [tasks, setTasks] = useState<Task[]>(
     () => JSON.parse(localStorage.getItem("tasks")!) || []
   );
   const [tabId, setTabId] = useState<string>("inbox");
@@ -29,13 +29,13 @@ const App = (): JSX.Element => {
     isCompleted: boolean;
   }) => {
     const task = { id: uuidv4(), ...e };
-    setTasks((prev: TaskList) => [task, ...prev]);
+    setTasks((prev: Task[]) => [task, ...prev]);
   };
 
   const toggleNavBar = () => setShowNav((prev) => !prev);
 
   const toggleIsCompleted = (id: string) => {
-    setTasks((prev: TaskList) => {
+    setTasks((prev: Task[]) => {
       return prev.map((task) => {
         if (task.id === id) {
           return { ...task, isCompleted: !task.isCompleted };
@@ -46,13 +46,13 @@ const App = (): JSX.Element => {
   };
 
   const removeTasks = (id: string) => {
-    setTasks((prev: TaskList) => {
+    setTasks((prev: Task[]) => {
       return prev.filter((task) => task.id !== id);
     });
   };
 
   const editTask = (id: string, editedTask: string, date: string) => {
-    setTasks((prev: TaskList) => {
+    setTasks((prev: Task[]) => {
       return prev.map((task) => {
         if (task.id === id) {
           return { ...task, task: editedTask, date };

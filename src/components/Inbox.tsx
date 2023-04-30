@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
-import Task from "../@types/TaskList";
+import Task from "../@types/Task";
 import EditTask from "../@types/EditTask";
 import ShowTaskList from "./ShowTaskList";
 
 type InboxProps = {
   createTask: (e: { task: string; date: string; isCompleted: boolean }) => void;
-  tasks: Task;
+  tasks: Task[];
   removeTasks: (id: string) => void;
   toggleCompleted: (id: string) => void;
   editTask: EditTask;
