@@ -63,7 +63,7 @@ const ProjectSideBar = ({
           onClick={toggleInputBox}
           className="flex items-center justify-center gap-2 rounded-md bg-slate-900 px-3 py-2 text-slate-100 hover:bg-slate-950 hover:text-slate-50"
         >
-          Add Task
+          Add Project
           <AiOutlinePlus />
         </button>
       </div>
