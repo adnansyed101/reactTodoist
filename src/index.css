@@ -7,7 +7,7 @@
 }
 
 .sidebar-tab-border {
-  @apply my-1 flex items-center gap-2 rounded-lg border-l-4 border-slate-900 py-1 pl-5 md:pl-2 text-xl font-bold text-slate-900 hover:scale-105 hover:bg-slate-200 lg:text-3xl;
+  @apply my-1 flex items-center gap-2 rounded-lg border-l-4 border-slate-900 py-1 pl-5 text-xl font-bold text-slate-900 hover:scale-105 hover:bg-slate-200 md:pl-2 lg:text-3xl;
 }
 
 .input-box {
@@ -20,4 +20,8 @@
 
 .red-button {
   @apply rounded-lg border border-red-900 bg-red-300 text-slate-900;
+}
+
+.sidebar-project {
+  @apply my-1 flex items-center gap-2 rounded-lg py-1 pl-5 text-xl font-bold text-slate-900 md:pl-2 lg:text-3xl;
 }

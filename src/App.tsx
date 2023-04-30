@@ -6,6 +6,7 @@ import Today from "./components/Today";
 import ThisWeek from "./components/ThisWeek";
 import { useState, useEffect } from "react";
 import Task from "./@types/Task";
+import Project from "./@types/Project";
 import { v4 as uuidv4 } from "uuid";
 
 const App = (): JSX.Element => {
@@ -13,6 +14,9 @@ const App = (): JSX.Element => {
     () => JSON.parse(localStorage.getItem("tasks")!) || []
   );
   const [tabId, setTabId] = useState<string>("inbox");
+  const [projects, setProjects] = useState<Project[]>([
+    { id: uuidv4(), title: "Homework" },
+  ]);
   const [showNav, setShowNav] = useState<boolean>(true);
 
   useEffect(() => {
@@ -27,7 +31,7 @@ const App = (): JSX.Element => {
     task: string;
     date: string;
     isCompleted: boolean;
-    projectId: string,
+    projectId: string;
   }) => {
     const task = { id: uuidv4(), ...e };
     setTasks((prev: Task[]) => [task, ...prev]);
@@ -71,6 +75,7 @@ const App = (): JSX.Element => {
         tabId={tabId}
         showNav={showNav}
         handleToggleNavBar={toggleNavBar}
+        projects={projects}
       />
       {tabId === "inbox" && (
         <Inbox

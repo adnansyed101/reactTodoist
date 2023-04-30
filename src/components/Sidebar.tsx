@@ -1,24 +1,32 @@
 import { AiFillStar } from "react-icons/ai";
 import { IoToday } from "react-icons/io5";
 import { MdCalendarMonth } from "react-icons/md";
+import ProjectSideBar from "./ProjectSideBar";
+import Project from "../@types/Project";
 
 type SidebarProps = {
-  onTabClick: (id: string) => void;
   tabId: string;
-  handleToggleNavBar: () => void;
   showNav: boolean;
+  projects: Project[];
+  onTabClick: (id: string) => void;
+  handleToggleNavBar: () => void;
 };
 
 const Sidebar = ({
-  onTabClick,
   tabId,
   showNav,
+  projects,
+  onTabClick,
   handleToggleNavBar,
 }: SidebarProps) => {
   const handleClick = (tab: string) => {
     onTabClick(tab);
     handleToggleNavBar();
   };
+
+  const projectSideBarElement = projects.map((project: Project) => {
+    return <ProjectSideBar tabId={tabId} project={project} handleClick={handleClick}/>;
+  });
 
   return (
     <div
@@ -45,6 +53,7 @@ const Sidebar = ({
       >
         <MdCalendarMonth /> This Week
       </p>
+      {projectSideBarElement}
     </div>
   );
 };
