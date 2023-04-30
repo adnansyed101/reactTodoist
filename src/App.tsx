@@ -22,8 +22,11 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    localStorage.setItem("tasks", JSON.stringify(projects));
-  }, [tasks, projects]);
+  }, [tasks]);
+
+  useEffect(() => {
+    localStorage.setItem("projects", JSON.stringify(projects));
+  }, [projects]);
 
   const toggleTabs = (id: string): void => {
     setTabId(id);
