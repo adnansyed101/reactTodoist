@@ -27,6 +27,7 @@ const App = (): JSX.Element => {
     task: string;
     date: string;
     isCompleted: boolean;
+    projectId: string,
   }) => {
     const task = { id: uuidv4(), ...e };
     setTasks((prev: Task[]) => [task, ...prev]);

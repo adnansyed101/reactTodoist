@@ -5,7 +5,12 @@ import EditTask from "../@types/EditTask";
 import ShowTaskList from "./ShowTaskList";
 
 type InboxProps = {
-  createTask: (e: { task: string; date: string; isCompleted: boolean }) => void;
+  createTask: (e: {
+    task: string;
+    date: string;
+    isCompleted: boolean;
+    projectId: string;
+  }) => void;
   tasks: Task[];
   removeTasks: (id: string) => void;
   toggleCompleted: (id: string) => void;
@@ -13,8 +18,8 @@ type InboxProps = {
 };
 
 const Inbox = ({
-  createTask,
   tasks,
+  createTask,
   toggleCompleted,
   removeTasks,
   editTask,
@@ -24,6 +29,7 @@ const Inbox = ({
     task: "",
     date: "",
     isCompleted: false,
+    projectId: "inbox",
   });
 
   const toggleInputBox = () => {
@@ -43,12 +49,12 @@ const Inbox = ({
     e.preventDefault();
     setInputBox(false);
     createTask(taskObj);
-    setTaskObj({ task: "", date: "", isCompleted: false });
+    setTaskObj({ task: "", date: "", isCompleted: false, projectId: "inbox" });
   };
 
   const cancelSubmit = () => {
     setInputBox(false);
-    setTaskObj({ task: "", date: "", isCompleted: false });
+    setTaskObj({ task: "", date: "", isCompleted: false, projectId: "inbox" });
   };
 
   const showTaskElement = tasks.map((task) => {
