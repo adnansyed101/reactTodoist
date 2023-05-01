@@ -48,10 +48,11 @@ const ProjectSideBar = ({
         className={
           tabId === project.title ? "sidebar-tab-border" : "sidebar-tab"
         }
-        onClick={() => handleClick(project.title)}
       >
-        <span>{index + 1}-</span>
-        {project.title}
+        <span onClick={() => handleClick(project.title)}>
+          {index + 1}- {project.title}
+        </span>
+
         <BsTrash
           className="cursor-pointer"
           onClick={() => removeProject(project.title)}
