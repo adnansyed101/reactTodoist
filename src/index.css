@@ -23,5 +23,5 @@
 }
 
 .sidebar-project {
-  @apply my-1 flex items-center gap-2 rounded-lg py-1 pl-5 text-xl font-bold text-slate-900 md:pl-2 lg:text-3xl;
+  @apply my-1 flex items-center gap-2 rounded-lg py-1 text-xl font-bold text-slate-900 md:pl-2 lg:text-3xl;
 }
