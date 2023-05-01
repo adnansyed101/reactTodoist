@@ -1,12 +1,14 @@
 import { useState } from "react";
 import Project from "../@types/Project";
 import { AiOutlinePlus } from "react-icons/ai";
+import { BsTrash } from "react-icons/bs";
 
 type ProjectSideBarProps = {
   tabId: string;
   projects: Project[];
   handleClick: (tab: string) => void;
   createProjects: (title: string) => void;
+  removeProject: (title: string) => void;
 };
 
 const ProjectSideBar = ({
@@ -14,6 +16,7 @@ const ProjectSideBar = ({
   projects,
   handleClick,
   createProjects,
+  removeProject,
 }: ProjectSideBarProps) => {
   const [inputBox, setInputBox] = useState(false);
   const [title, setTitle] = useState("");
@@ -47,9 +50,12 @@ const ProjectSideBar = ({
         }
         onClick={() => handleClick(project.title)}
       >
-        {index + 1}
-        {"- "}
+        <span>{index + 1}-</span>
         {project.title}
+        <BsTrash
+          className="cursor-pointer"
+          onClick={() => removeProject(project.title)}
+        />
       </p>
     );
   });

@@ -14,10 +14,10 @@ const App = (): JSX.Element => {
   const [tasks, setTasks] = useState<Task[]>(
     () => JSON.parse(localStorage.getItem("tasks")!) || []
   );
-  const [tabId, setTabId] = useState<string>("inbox");
   const [projects, setProjects] = useState<Project[]>(
     () => JSON.parse(localStorage.getItem("projects")!) || []
   );
+  const [tabId, setTabId] = useState<string>("inbox");
   const [showNav, setShowNav] = useState<boolean>(true);
 
   useEffect(() => {
@@ -66,6 +66,18 @@ const App = (): JSX.Element => {
     });
   };
 
+  const removeProject = (title: string) => {
+    setTabId("inbox");
+
+    setProjects((prev: Project[]) =>
+      prev.filter((proj: Project) => proj.title !== title)
+    );
+
+    setTasks((prev: Task[]) =>
+      prev.filter((task: Task) => task.projectId !== title)
+    );
+  };
+
   const editTask = (id: string, editedTask: string, date: string) => {
     setTasks((prev: Task[]) => {
       return prev.map((task) => {
@@ -97,12 +109,13 @@ const App = (): JSX.Element => {
     <div className="relative h-screen w-screen md:static md:grid md:grid-cols-[1fr_4fr] md:grid-rows-[80px_1fr_35px]">
       <Header handleToggleNavBar={toggleNavBar} showNav={showNav} />
       <Sidebar
-        onTabClick={toggleTabs}
         tabId={tabId}
         showNav={showNav}
-        handleToggleNavBar={toggleNavBar}
         projects={projects}
+        onTabClick={toggleTabs}
+        handleToggleNavBar={toggleNavBar}
         createProject={createProject}
+        removeProject={removeProject}
       />
       {tabId === "inbox" && (
         <Inbox

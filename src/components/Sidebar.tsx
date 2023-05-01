@@ -11,6 +11,7 @@ type SidebarProps = {
   onTabClick: (id: string) => void;
   handleToggleNavBar: () => void;
   createProject: (title: string) => void;
+  removeProject: (title: string) => void;
 };
 
 const Sidebar = ({
@@ -19,7 +20,8 @@ const Sidebar = ({
   projects,
   onTabClick,
   handleToggleNavBar,
-  createProject
+  createProject,
+  removeProject,
 }: SidebarProps) => {
   const handleClick = (tab: string) => {
     onTabClick(tab);
@@ -56,6 +58,7 @@ const Sidebar = ({
         projects={projects}
         handleClick={handleClick}
         createProjects={createProject}
+        removeProject={removeProject}
       />
     </div>
   );
