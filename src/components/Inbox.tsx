@@ -82,7 +82,7 @@ const Inbox = ({
       </button>
       {inputBox && (
         <form
-          className="grid w-full gap-2 p-3 md:w-2/4 md:grid-cols-4"
+          className="grid w-full gap-2 py-3 md:w-full md:grid-cols-4 2xl:w-2/4"
           onSubmit={onInputSubmit}
         >
           <input

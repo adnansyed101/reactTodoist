@@ -106,7 +106,7 @@ const App = (): JSX.Element => {
   });
 
   return (
-    <div className="relative h-screen w-screen md:static md:grid md:grid-cols-[1fr_4fr] md:grid-rows-[80px_1fr_35px]">
+    <div className="relative h-screen w-screen lg:static lg:grid lg:grid-cols-[1fr_4fr] lg:grid-rows-[80px_1fr_35px]">
       <Header handleToggleNavBar={toggleNavBar} showNav={showNav} />
       <Sidebar
         tabId={tabId}

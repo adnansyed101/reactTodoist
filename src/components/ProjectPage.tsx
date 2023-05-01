@@ -92,7 +92,7 @@ const ProjectPage = ({
       </button>
       {inputBox && (
         <form
-          className="grid w-full gap-2 p-3 md:w-2/4 md:grid-cols-4"
+          className="grid w-full gap-2 p-3 md:grid-cols-4 lg:w-2/4"
           onSubmit={onInputSubmit}
         >
           <input
