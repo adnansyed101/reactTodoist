@@ -32,7 +32,7 @@ const Sidebar = ({
     <div
       className={`${
         showNav ? "-translate-x-full transition" : ""
-      } absolute h-full w-2/3 bg-slate-100 p-5 duration-500 ease-out md:w-2/4 md:p-4 lg:static lg:block lg:w-full md lg:translate-x-0 lg:transition-none lg:mx-5 xl:p-10`}
+      } md absolute h-full w-2/3 bg-slate-100 p-5 duration-500 ease-out md:w-2/4 md:p-4 lg:static lg:mr-5 lg:block lg:w-full lg:translate-x-0 lg:transition-none xl:p-10`}
     >
       <p
         className={tabId === "inbox" ? "sidebar-tab-border" : "sidebar-tab"}
