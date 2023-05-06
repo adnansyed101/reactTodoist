@@ -36,9 +36,8 @@ const TaskForm = ({
         value={taskObj.date}
         onChange={(e) => onChange(e)}
         type="date"
-        placeholder="mm/dd/yyyy"
         min={new Date().toISOString().split("T")[0]}
-        className="input-box inline-flex justify-center sm:block md:col-span-1"
+        className="input-box w-full after:content-['mm/dd/yyyy'] sm:block md:col-span-1 lg:after:content-['']"
       />
       <button
         type="submit"
